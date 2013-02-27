@@ -1,0 +1,81 @@
+<?php
+
+namespace AsciiPlist;
+
+class Lexer {
+    private $data;
+    private $N;
+    private $token;
+    private $value;
+    private $line;
+    private $state = 1;
+
+    function __construct($data) {
+        $this->data = $data;
+        $this->N = 0;
+        $this->line = 1;
+    }
+
+    function advance() {
+        if ($this->{'yylex' . $this->state}()) {
+            return true;
+        }
+        return false;
+    }
+
+/*!lex2php
+%input $this->data
+%counter $this->N
+%token $this->token
+%value $this->value
+%line $this->line
+lcurly = "{"
+rcurly = "}"
+lparen = "("
+rparen = ")"
+comma = ","
+semicolon = ";"
+equals = "="
+stringliteral = /\"(\\.|[^\\\"])*\"/
+space = /[ \t\r\n]+/
+*/
+/*!lex2php
+lcurly {
+    #echo 'LCURLY' . PHP_EOL;
+    #var_dump($this->value);
+}
+rcurly {
+    #echo 'RCURLY' . PHP_EOL;
+    #var_dump($this->value);
+}
+lparen {
+    #echo 'LPAREN' . PHP_EOL;
+    #var_dump($this->value);
+}
+rparen {
+    #echo 'RPAREN' . PHP_EOL;
+    #var_dump($this->value);
+}
+space {
+    #echo 'SPACE' . PHP_EOL;
+    #var_dump($this->value);
+}
+semicolon {
+    #echo 'SEMICOLON' . PHP_EOL;
+    #var_dump($this->value);
+}
+comma {
+    #echo 'COMMA' . PHP_EOL;
+    #var_dump($this->value);
+}
+equals {
+    #echo 'EQUALS' . PHP_EOL;
+    #var_dump($this->value);
+}
+stringliteral {
+    #echo 'STRINGLITERAL' . PHP_EOL;
+    #var_dump(substr(stripslashes($this->value), 1, -1));
+}
+*/
+
+}
