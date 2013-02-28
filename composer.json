@@ -1,7 +1,7 @@
 {
-    "name": "burzumko/asciip-plist-decoder",
+    "name": "burzumko/ascii-plist-decoder",
     "description": "Decoding to php-array tool of (Old-style) Ascii Plist",
-    "homepage": "https://github.com/burzumko/asciip-plist-decoder",
+    "homepage": "https://github.com/burzumko/ascii-plist-decoder",
     "license": "WTFPL",
     "authors": [
         {
@@ -15,6 +15,11 @@
     "autoload": {
         "psr-0" : {
             "AsciiPlist" : "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
         }
     }
 }
