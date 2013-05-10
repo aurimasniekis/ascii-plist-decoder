@@ -10,8 +10,10 @@ class Decoder {
     static function decode($in) {
         $out = null;
         try {
-            $lexer_map  = (new \ReflectionClass('\AsciiPlist\Lexer'))->getConstants();
-            $parser_map = (new \ReflectionClass('\AsciiPlist\Parser'))->getConstants();
+            $lexer_reflection = new \ReflectionClass('\AsciiPlist\Lexer');
+            $parser_reflection = new \ReflectionClass('\AsciiPlist\Parser');
+            $lexer_map = $lexer_reflection->getConstants();
+            $parser_map = $parser_reflection->getConstants();
             $tokens_map = array();
             foreach ($lexer_map as $k => $v) {
                 if (isset($parser_map[$k])) {
